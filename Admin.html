@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Hantrix Academy Registrations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange:  #F7941D;
+      --dark:    #1C1C1E;
+      --bg:      #F0EFED;
+      --white:   #FFFFFF;
+      --muted:   #7a7a7a;
+      --text:    #3a3a3a;
+      --green:   #22c55e;
+      --red:     #ef4444;
+      --pending: #f59e0b;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Barlow', sans-serif; background: var(--bg); color: var(--dark); min-height: 100vh; }
+
+    /* ── LOGIN SCREEN ─────────────────── */
+    #login-screen {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--dark);
+    }
+    .login-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 52px 44px;
+      width: 380px; text-align: center;
+    }
+    .login-logo { margin-bottom: 28px; }
+    .login-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 28px;
+      text-transform: uppercase; color: var(--white); margin-bottom: 6px;
+    }
+    .login-sub { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
+    .login-input {
+      width: 100%; padding: 13px 16px;
+      font-family: 'Barlow', sans-serif; font-size: 15px;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 8px; color: var(--white);
+      outline: none; margin-bottom: 14px;
+      transition: border-color .2s;
+    }
+    .login-input:focus { border-color: var(--orange); }
+    .login-input::placeholder { color: rgba(255,255,255,0.25); }
+    .login-btn {
+      width: 100%; background: var(--orange); color: var(--white);
+      font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 15px;
+      padding: 14px; border: none; border-radius: 8px; cursor: pointer;
+      transition: background .2s;
+    }
+    .login-btn:hover { background: #dc830e; }
+    .login-error {
+      font-size: 13px; color: var(--red);
+      margin-top: 12px; display: none;
+    }
+
+    /* ── ADMIN APP ────────────────────── */
+    #admin-app { display: none; }
+
+    /* Navbar */
+    .admin-nav {
+      background: var(--dark); height: 68px;
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .admin-nav-left { display: flex; align-items: center; gap: 16px; }
+    .admin-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 20px;
+      text-transform: uppercase; color: var(--white); letter-spacing: 1px;
+    }
+    .admin-badge {
+      background: var(--orange); color: var(--white);
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      padding: 3px 10px; border-radius: 100px;
+    }
+    .admin-nav-right { display: flex; align-items: center; gap: 12px; }
+    .btn-sm {
+      font-family: 'Barlow', sans-serif; font-weight: 700;
+      font-size: 12px; letter-spacing: 0.5px;
+      padding: 8px 18px; border-radius: 4px;
+      cursor: pointer; border: none; transition: .2s;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.2) !important;
+      color: rgba(255,255,255,0.7);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5) !important; color: var(--white); }
+    .btn-orange { background: var(--orange); color: var(--white); }
+    .btn-orange:hover { background: #dc830e; }
+
+    /* Stats bar */
+    .stats-bar {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      padding: 0 40px;
+      display: flex; align-items: stretch; gap: 0;
+    }
+    .stat-item {
+      padding: 20px 32px;
+      border-right: 1px solid rgba(0,0,0,0.07);
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 32px; line-height: 1;
+      color: var(--dark);
+    }
+    .stat-value.orange { color: var(--orange); }
+    .stat-value.green  { color: var(--green); }
+    .stat-value.amber  { color: var(--pending); }
+
+    /* Firebase status bar */
+    #firebase-status {
+      margin: 16px 40px 4px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      padding: 16px 40px 20px;
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+    .search-wrap {
+      flex: 1; min-width: 200px; position: relative;
+    }
+    .search-wrap svg {
+      position: absolute; left: 12px; top: 50%;
+      transform: translateY(-50%); color: var(--muted); pointer-events: none;
+    }
+    .search-input {
+      width: 100%; padding: 10px 12px 10px 38px;
+      font-family: 'Barlow', sans-serif; font-size: 14px;
+      border: 1.5px solid rgba(0,0,0,0.1); border-radius: 6px;
+      background: var(--white); outline: none; color: var(--dark);
+      transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--orange); }
+    .filter-select {
+      padding: 10px 14px;
+      font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
+      border: 1.5px solid rgba(0,0,0,0.1); border-radius: 6px;
+      background: var(--white); color: var(--dark); outline: none;
+      cursor: pointer; appearance: none;
+    }
+
+    /* Table */
+    .table-wrap {
+      padding: 0 40px 60px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%; border-collapse: collapse;
+      background: var(--white);
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    thead { background: var(--dark); }
+    thead th {
+      padding: 14px 18px;
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      text-align: left; white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(247,148,29,0.04); }
+    tbody td {
+      padding: 14px 18px;
+      font-size: 14px; color: var(--text);
+      vertical-align: middle;
+    }
+    .td-name  { font-weight: 700; color: var(--dark); }
+    .td-email { color: var(--muted); font-size: 13px; }
+    .td-time  { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+    /* Screenshot thumbnail */
+    .screenshot-thumb {
+      width: 50px; height: 50px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      display: block;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .screenshot-thumb:hover {
+      border-color: var(--orange);
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(247,148,29,0.3);
+    }
+    .screenshot-fallback {
+      width: 50px; height: 50px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: var(--muted);
+      border: 1px dashed rgba(0,0,0,0.15);
+    }
+
+    /* Status badge (detail view / read-only display) */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      border: none; white-space: nowrap;
+    }
+    .status-badge.pending   { background: rgba(245,158,11,0.12); color: var(--pending); }
+    .status-badge.confirmed { background: rgba(34,197,94,0.12);  color: var(--green);   }
+    .status-badge.refunded  { background: rgba(99,102,241,0.12); color: #6366f1;        }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+    /* Status select dropdown (table rows) */
+    .status-select {
+      appearance: none; -webkit-appearance: none;
+      border: none; outline: none; cursor: pointer;
+      border-radius: 100px;
+      padding: 5px 30px 5px 12px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 10px 10px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      transition: opacity .15s;
+    }
+    .status-select:hover { opacity: 0.85; }
+    .status-select.pending   { background-color: rgba(245,158,11,0.12); color: var(--pending); }
+    .status-select.confirmed { background-color: rgba(34,197,94,0.12);  color: var(--green);   }
+    .status-select.refunded  { background-color: rgba(99,102,241,0.12); color: #6366f1;        }
+
+    /* Detail footer action buttons */
+    .action-btn.confirm { border-color: rgba(34,197,94,0.4); color: var(--green); }
+    .action-btn.confirm:hover { background: rgba(34,197,94,0.08); border-color: var(--green); }
+    .action-btn.revert  { border-color: rgba(245,158,11,0.4); color: var(--pending); }
+    .action-btn.revert:hover  { background: rgba(245,158,11,0.08); border-color: var(--pending); }
+
+    /* Actions */
+    .td-actions { display: flex; align-items: center; gap: 8px; }
+    .action-btn {
+      background: none; border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 4px; padding: 5px 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+      cursor: pointer; color: var(--muted); transition: .15s;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .action-btn:hover { background: var(--bg); color: var(--dark); }
+    .action-btn.del:hover { border-color: var(--red); color: var(--red); }
+    .action-btn.view { color: var(--orange); border-color: rgba(247,148,29,0.3); }
+    .action-btn.view:hover { background: rgba(247,148,29,0.08); border-color: var(--orange); }
+
+    /* Empty / loading state */
+    .empty-state {
+      text-align: center; padding: 80px 20px;
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+    .empty-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 28px;
+      text-transform: uppercase; color: var(--dark); margin-bottom: 8px;
+    }
+    .empty-sub { font-size: 14px; color: var(--muted); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { display: inline-block; animation: spin 1s linear infinite; }
+
+    /* ── IMAGE PREVIEW MODAL ──────────── */
+    .img-modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88); z-index: 200;
+      align-items: center; justify-content: center;
+      padding: 20px; cursor: zoom-out;
+    }
+    .img-modal-overlay.show { display: flex; }
+    .img-modal-content {
+      position: relative;
+      max-width: 90vw; max-height: 90vh;
+      cursor: default;
+    }
+    .img-modal-content img {
+      max-width: 90vw; max-height: 85vh;
+      border-radius: 10px; display: block;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    .img-modal-close {
+      position: absolute; top: -14px; right: -14px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--white); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--dark);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: transform .15s; z-index: 1;
+    }
+    .img-modal-close:hover { transform: scale(1.1); }
+
+    /* ── DETAIL VIEW ─────────────────── */
+    #main-view { display: block; }
+    #detail-view { display: none; padding: 28px 40px 60px; }
+
+    .detail-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.3px;
+      color: var(--muted); background: none; border: none;
+      cursor: pointer; padding: 0; margin-bottom: 28px;
+      transition: color .15s;
+    }
+    .detail-back:hover { color: var(--dark); }
+
+    .detail-card {
+      background: var(--white); border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.06); overflow: hidden;
+      max-width: 780px;
+    }
+    .detail-header {
+      background: var(--dark); padding: 28px 32px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .detail-header-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 28px;
+      text-transform: uppercase; color: var(--white); margin-bottom: 4px;
+    }
+    .detail-header-email { font-size: 13px; color: rgba(255,255,255,0.45); }
+    .detail-body {
+      padding: 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .detail-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .detail-value { font-size: 15px; font-weight: 600; color: var(--dark); word-break: break-all; }
+    .detail-value.mono { font-family: monospace; font-size: 13px; font-weight: 400; }
+
+    .detail-screenshot-wrap { grid-column: 1 / -1; margin-top: 4px; }
+    .detail-screenshot-img {
+      max-width: 100%; max-height: 420px;
+      border-radius: 8px; display: block;
+      border: 1px solid rgba(0,0,0,0.08);
+      cursor: zoom-in;
+      transition: opacity .2s, box-shadow .2s;
+    }
+    .detail-screenshot-img:hover { opacity: 0.92; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+    .detail-screenshot-placeholder {
+      display: flex; align-items: center; gap: 12px;
+      padding: 20px; background: rgba(0,0,0,0.04);
+      border-radius: 8px; border: 1px dashed rgba(0,0,0,0.15);
+      font-size: 13px; color: var(--muted);
+    }
+    .detail-footer {
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 20px 32px;
+      display: flex; align-items: center; gap: 12px;
+    }
+
+    /* ── MODALS ──────────────────────── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 100;
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 12px;
+      padding: 36px 32px; max-width: 420px; width: 90%;
+      text-align: center;
+    }
+    .modal h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 26px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .modal p { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+    .modal-actions { display: flex; gap: 12px; justify-content: center; }
+    .btn-cancel {
+      background: var(--bg); color: var(--text);
+      font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 14px;
+      padding: 12px 28px; border: none; border-radius: 6px; cursor: pointer;
+    }
+    .btn-danger {
+      background: var(--red); color: var(--white);
+      font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 14px;
+      padding: 12px 28px; border: none; border-radius: 6px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── LOGIN SCREEN ──────────────────── -->
+  <div id="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        <svg width="44" height="40" viewBox="0 0 38 34" fill="none">
+          <rect x="0"  y="0"  width="15" height="15" rx="1" fill="#F7941D"/>
+          <rect x="23" y="0"  width="15" height="15" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="0"  y="19" width="15" height="15" rx="1" fill="rgba(255,255,255,0.2)"/>
+          <rect x="23" y="19" width="15" height="15" rx="1" fill="#F7941D"/>
+          <rect x="0"  y="14" width="38" height="6"  rx="1" fill="#F7941D"/>
+        </svg>
+      </div>
+      <div class="login-title">Admin Panel</div>
+      <div class="login-sub">Hantrix Academy · Webinar Registrations</div>
+      <input class="login-input" type="password" id="login-pw"
+        placeholder="Enter admin password"
+        onkeydown="if(event.key==='Enter') doLogin()">
+      <button class="login-btn" onclick="doLogin()">Sign In</button>
+      <div class="login-error" id="login-error">Incorrect password. Try again.</div>
+    </div>
+  </div>
+
+  <!-- ── ADMIN APP ─────────────────────── -->
+  <div id="admin-app">
+
+    <!-- Navbar -->
+    <div class="admin-nav">
+      <div class="admin-nav-left">
+        <svg width="32" height="28" viewBox="0 0 38 34" fill="none">
+          <rect x="0"  y="0"  width="15" height="15" rx="1" fill="#F7941D"/>
+          <rect x="23" y="0"  width="15" height="15" rx="1" fill="rgba(255,255,255,0.18)"/>
+          <rect x="0"  y="19" width="15" height="15" rx="1" fill="rgba(255,255,255,0.18)"/>
+          <rect x="23" y="19" width="15" height="15" rx="1" fill="#F7941D"/>
+          <rect x="0"  y="14" width="38" height="6"  rx="1" fill="#F7941D"/>
+        </svg>
+        <span class="admin-title">Registrations</span>
+        <span class="admin-badge" id="total-badge">0</span>
+      </div>
+      <div class="admin-nav-right">
+        <a href="index.html" style="text-decoration:none;">
+          <button class="btn-sm btn-outline">← Webinar Page</button>
+        </a>
+        <button class="btn-sm btn-orange" onclick="exportCSV()">⬇ Export CSV</button>
+        <button class="btn-sm btn-outline" onclick="doLogout()">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-label">Total</div>
+        <div class="stat-value orange" id="stat-total">0</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Confirmed</div>
+        <div class="stat-value green" id="stat-confirmed">0</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Pending</div>
+        <div class="stat-value amber" id="stat-pending">0</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Refunded</div>
+        <div class="stat-value" id="stat-refunded" style="color:#6366f1;">0</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Revenue (est.)</div>
+        <div class="stat-value" id="stat-revenue">₹0</div>
+      </div>
+    </div>
+
+    <!-- Firebase status -->
+    <div id="firebase-status"></div>
+
+    <!-- ── MAIN TABLE VIEW ─────────────── -->
+    <div id="main-view">
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input class="search-input" id="search-input" placeholder="Search by name, email or phone…"
+            oninput="renderTable()">
+        </div>
+        <select class="filter-select" id="filter-status" onchange="renderTable()">
+          <option value="all">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="refunded">Refunded</option>
+        </select>
+        <button class="btn-sm" style="background:var(--red);color:white;border:none;"
+          onclick="confirmClearAll()">🗑 Clear All</button>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <div id="loading-state" class="empty-state">
+          <span class="empty-icon spin">⏳</span>
+          <div class="empty-title">Loading</div>
+          <div class="empty-sub">Connecting to Firebase…</div>
+        </div>
+        <table id="reg-table" style="display:none;">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone / WhatsApp</th>
+              <th>Screenshot</th>
+              <th>Txn ID</th>
+              <th>Submitted</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div id="empty-state" class="empty-state" style="display:none;"></div>
+      </div>
+
+    </div><!-- /#main-view -->
+
+    <!-- ── REGISTRATION DETAIL VIEW ────── -->
+    <div id="detail-view">
+      <button class="detail-back" onclick="closeDetails()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back to Registrations
+      </button>
+      <div class="detail-card" id="detail-card"></div>
+    </div>
+
+  </div><!-- /#admin-app -->
+
+  <!-- ── IMAGE PREVIEW MODAL ──────────── -->
+  <div class="img-modal-overlay" id="img-modal" onclick="closeImgModal()">
+    <div class="img-modal-content" onclick="event.stopPropagation()">
+      <button class="img-modal-close" onclick="closeImgModal()">✕</button>
+      <img id="img-modal-img" src="" alt="Screenshot preview">
+    </div>
+  </div>
+
+  <!-- ── DELETE CONFIRM MODAL ──────────── -->
+  <div class="modal-overlay" id="delete-modal">
+    <div class="modal">
+      <h3>Delete Entry?</h3>
+      <p>This will permanently remove this registration from Firebase. This cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeDeleteModal()">Cancel</button>
+        <button class="btn-danger" onclick="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CLEAR ALL MODAL ───────────────── -->
+  <div class="modal-overlay" id="clear-modal">
+    <div class="modal">
+      <h3>Clear All Data?</h3>
+      <p>This will permanently delete ALL registrations from Firebase. Export a CSV backup first if needed.</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="document.getElementById('clear-modal').classList.remove('show')">Cancel</button>
+        <button class="btn-danger" onclick="clearAll()">Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+
+  <script>
+    /* ── CONFIG ── */
+    const SESSION_KEY = 'hantrix_admin_session';
+    const ADMIN_PASS  = 'hantrix2026';
+
+    let allData         = [];
+    let pendingDeleteId = null;
+    let isLoading       = true;
+
+    /* ── AUTH ── */
+    function doLogin() {
+      const pw = document.getElementById('login-pw').value;
+      if (pw === ADMIN_PASS) {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-app').style.display = 'block';
+        init();
+      } else {
+        document.getElementById('login-error').style.display = 'block';
+        document.getElementById('login-pw').value = '';
+      }
+    }
+
+    function doLogout() {
+      sessionStorage.removeItem(SESSION_KEY);
+      location.reload();
+    }
+
+    /* ── INIT ── */
+    function init() {
+      showConnectionStatus();
+      startRealtimeSync();
+    }
+
+    /* ── CONNECTION STATUS BADGE ── */
+    function showConnectionStatus() {
+      const el = document.getElementById('firebase-status');
+      el.style.cssText = 'margin:16px 40px 4px;padding:10px 18px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:10px;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.18);';
+      el.innerHTML = '<span style="color:#22c55e;font-size:16px">●</span><span style="color:#22c55e;font-weight:700;">Supabase Connected</span><span style="color:var(--muted)">— Real-time sync active</span>';
+    }
+
+    /* ── REAL-TIME SYNC ── */
+    function startRealtimeSync() {
+      fetchRegistrations();
+
+      supabaseClient
+        .channel('registrations-changes')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'registrations' }, () => {
+          fetchRegistrations();
+        })
+        .subscribe();
+    }
+
+    async function fetchRegistrations() {
+      const { data, error } = await supabaseClient
+        .from('registrations')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      isLoading = false;
+
+      if (error) {
+        console.error('Supabase error:', error);
+        document.getElementById('loading-state').style.display = 'none';
+        const empty = document.getElementById('empty-state');
+        empty.style.display = 'block';
+        empty.innerHTML = `<span class="empty-icon">⚠️</span><div class="empty-title">Connection Error</div><div class="empty-sub">${esc(error.message)}</div>`;
+        return;
+      }
+
+      allData = (data || []).map(r => ({
+        id:            String(r.id),
+        name:          r.name           || '',
+        email:         r.email          || '',
+        phone:         r.phone          || '',
+        transactionId: r.transaction_id || '',
+        screenshot:    r.screenshot_url || '',
+        status:        r.status         || 'pending',
+        createdAt:     r.created_at     || ''
+      }));
+      renderTable();
+    }
+
+    /* ── SCREENSHOT HELPERS ── */
+    function isImageSrc(s) {
+      if (!s) return false;
+      return s.startsWith('data:image') ||
+             s.startsWith('http://') ||
+             s.startsWith('https://') ||
+             s.startsWith('blob:') ||
+             /\.(png|jpg|jpeg|gif|webp|svg)(\?|$)/i.test(s);
+    }
+
+    function screenshotThumb(r) {
+      if (!r.screenshot) {
+        return '<div class="screenshot-fallback" title="No screenshot">📎</div>';
+      }
+      if (isImageSrc(r.screenshot)) {
+        return `<img
+          class="screenshot-thumb"
+          src="${esc(r.screenshot)}"
+          alt="Screenshot"
+          title="Click to enlarge"
+          onclick="openImgModal('${r.id}')"
+          onerror="this.outerHTML='<div class=\\'screenshot-fallback\\' title=\\'Image unavailable\\'>🖼</div>'"
+        >`;
+      }
+      return `<div class="screenshot-fallback" title="${esc(r.screenshot)}">📎</div>`;
+    }
+
+    /* ── RENDER TABLE ── */
+    function renderTable() {
+      const search = document.getElementById('search-input').value.toLowerCase();
+      const filter = document.getElementById('filter-status').value;
+
+      const rows = allData.filter(r => {
+        const matchSearch = !search ||
+          r.name.toLowerCase().includes(search)  ||
+          r.email.toLowerCase().includes(search) ||
+          r.phone.toLowerCase().includes(search);
+        const matchFilter = filter === 'all' || r.status === filter;
+        return matchSearch && matchFilter;
+      });
+
+      /* Stats from full allData */
+      const total    = allData.length;
+      const confirmed = allData.filter(r => r.status === 'confirmed').length;
+      const pending   = allData.filter(r => r.status === 'pending').length;
+      const refunded  = allData.filter(r => r.status === 'refunded').length;
+      document.getElementById('stat-total').textContent     = total;
+      document.getElementById('stat-confirmed').textContent = confirmed;
+      document.getElementById('stat-pending').textContent   = pending;
+      document.getElementById('stat-refunded').textContent  = refunded;
+      document.getElementById('stat-revenue').textContent   = '₹' + (confirmed * 99);
+      document.getElementById('total-badge').textContent    = total;
+
+      const loading = document.getElementById('loading-state');
+      const empty   = document.getElementById('empty-state');
+      const table   = document.getElementById('reg-table');
+
+      loading.style.display = 'none';
+
+      if (rows.length === 0) {
+        table.style.display = 'none';
+        empty.style.display = 'block';
+        empty.innerHTML = total === 0
+          ? '<span class="empty-icon">📭</span><div class="empty-title">No registrations yet</div><div class="empty-sub">New registrations will appear here in real time.</div>'
+          : '<span class="empty-icon">🔍</span><div class="empty-title">No matches</div><div class="empty-sub">Try a different search term or filter.</div>';
+      } else {
+        table.style.display = '';
+        empty.style.display = 'none';
+        document.getElementById('table-body').innerHTML = rows.map(r => {
+          const num = allData.length - allData.findIndex(r2 => r2.id === r.id);
+          return `
+            <tr>
+              <td style="color:var(--muted);font-size:12px;">${num}</td>
+              <td>
+                <div class="td-name">${esc(r.name)}</div>
+                <div class="td-email">${esc(r.email)}</div>
+              </td>
+              <td style="color:var(--muted);font-size:13px;">${esc(r.email)}</td>
+              <td style="font-weight:600;">${esc(r.phone)}</td>
+              <td>${screenshotThumb(r)}</td>
+              <td style="font-family:monospace;font-size:12px;color:var(--muted);">${esc(r.transactionId) || '—'}</td>
+              <td class="td-time">${formatDate(r.createdAt)}</td>
+              <td>
+                <select class="status-select ${r.status}"
+                  onchange="updateStatus('${r.id}', this.value)">
+                  <option value="pending"   ${r.status === 'pending'   ? 'selected' : ''}>⏳ Pending</option>
+                  <option value="confirmed" ${r.status === 'confirmed' ? 'selected' : ''}>✓ Confirmed</option>
+                  <option value="refunded"  ${r.status === 'refunded'  ? 'selected' : ''}>↩ Refunded</option>
+                </select>
+              </td>
+              <td>
+                <div class="td-actions">
+                  <button class="action-btn view" onclick="viewDetails('${r.id}')" title="View Details">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View
+                  </button>
+                  <button class="action-btn" onclick="copyRowInfo('${r.id}')">Copy</button>
+                  <button class="action-btn del" onclick="askDelete('${r.id}')">Delete</button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
+
+    /* ── HELPERS ── */
+    function esc(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function capitalize(s) {
+      return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+    }
+    function formatDate(iso) {
+      if (!iso) return '—';
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
+        + ' ' + d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+    }
+
+    /* ── IMAGE MODAL ── */
+    function openImgModal(id) {
+      const r = allData.find(r => r.id === id);
+      if (!r || !r.screenshot) return;
+      document.getElementById('img-modal-img').src = r.screenshot;
+      document.getElementById('img-modal').classList.add('show');
+    }
+    function closeImgModal() {
+      document.getElementById('img-modal').classList.remove('show');
+      document.getElementById('img-modal-img').src = '';
+    }
+
+    /* ── DETAIL VIEW ── */
+    function viewDetails(id) {
+      const r = allData.find(r => r.id === id);
+      if (!r) return;
+
+      const screenshotHtml = isImageSrc(r.screenshot)
+        ? `<img
+            class="detail-screenshot-img"
+            src="${esc(r.screenshot)}"
+            alt="Payment screenshot"
+            title="Click to enlarge"
+            onclick="openImgModal('${r.id}')"
+            onerror="this.outerHTML='<div class=\\'detail-screenshot-placeholder\\'><span style=\\'font-size:24px\\'>🖼</span> Image unavailable</div>'"
+          >`
+        : r.screenshot
+          ? `<div class="detail-screenshot-placeholder"><span style="font-size:22px">📎</span><span>${esc(r.screenshot)}</span></div>`
+          : `<div class="detail-screenshot-placeholder"><span style="font-size:22px">📷</span><span>No screenshot uploaded</span></div>`;
+
+      document.getElementById('detail-card').innerHTML = `
+        <div class="detail-header">
+          <div>
+            <div class="detail-header-name">${esc(r.name)}</div>
+            <div class="detail-header-email">${esc(r.email)}</div>
+          </div>
+          <span class="status-badge ${r.status}" style="flex-shrink:0;">
+            <span class="status-dot"></span>${capitalize(r.status)}
+          </span>
+        </div>
+        <div class="detail-body">
+          <div>
+            <div class="detail-label">Full Name</div>
+            <div class="detail-value">${esc(r.name)}</div>
+          </div>
+          <div>
+            <div class="detail-label">Phone / WhatsApp</div>
+            <div class="detail-value">${esc(r.phone)}</div>
+          </div>
+          <div>
+            <div class="detail-label">Email Address</div>
+            <div class="detail-value">${esc(r.email)}</div>
+          </div>
+          <div>
+            <div class="detail-label">Transaction ID</div>
+            <div class="detail-value mono">${r.transactionId ? esc(r.transactionId) : '<span style="color:var(--muted);font-weight:400">—</span>'}</div>
+          </div>
+          <div>
+            <div class="detail-label">Submitted</div>
+            <div class="detail-value" style="color:var(--muted);font-weight:400;">${formatDate(r.createdAt)}</div>
+          </div>
+          <div>
+            <div class="detail-label">Status</div>
+            <div style="margin-top:4px;">
+              <select class="status-select ${r.status}"
+                onchange="updateStatusFromDetail('${r.id}', this.value)">
+                <option value="pending"   ${r.status === 'pending'   ? 'selected' : ''}>⏳ Pending</option>
+                <option value="confirmed" ${r.status === 'confirmed' ? 'selected' : ''}>✓ Confirmed</option>
+              </select>
+            </div>
+          </div>
+          <div class="detail-screenshot-wrap">
+            <div class="detail-label">Payment Screenshot</div>
+            ${screenshotHtml}
+          </div>
+        </div>
+        <div class="detail-footer">
+          <button class="action-btn" onclick="copyRowInfo('${r.id}')">Copy Info</button>
+          <button class="action-btn del" onclick="askDeleteFromDetail('${r.id}')">Delete</button>
+        </div>
+      `;
+
+      document.getElementById('main-view').style.display = 'none';
+      document.getElementById('detail-view').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeDetails() {
+      document.getElementById('detail-view').style.display = 'none';
+      document.getElementById('main-view').style.display = 'block';
+    }
+
+    /* ── ACTIONS ── */
+    async function updateStatus(id, newStatus) {
+      const item = allData.find(r => r.id === id);
+      if (!item) return;
+      const prev = item.status;
+      item.status = newStatus;
+      renderTable();
+      const { error } = await supabaseClient
+        .from('registrations')
+        .update({ status: newStatus })
+        .eq('id', id);
+      if (error) {
+        item.status = prev;
+        renderTable();
+        alert('Error updating status: ' + error.message);
+      }
+    }
+
+    async function updateStatusFromDetail(id, newStatus) {
+      await updateStatus(id, newStatus);
+      viewDetails(id);
+    }
+
+    function copyRowInfo(id) {
+      const r = allData.find(r => r.id === id);
+      if (!r) return;
+      const text = `Name: ${r.name}\nEmail: ${r.email}\nPhone: ${r.phone}\nTransaction ID: ${r.transactionId || '—'}\nStatus: ${capitalize(r.status)}\nSubmitted: ${formatDate(r.createdAt)}`;
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+
+    function askDelete(id) {
+      pendingDeleteId = id;
+      document._deleteFromDetail = false;
+      document.getElementById('delete-modal').classList.add('show');
+    }
+    function askDeleteFromDetail(id) {
+      pendingDeleteId = id;
+      document._deleteFromDetail = true;
+      document.getElementById('delete-modal').classList.add('show');
+    }
+    function closeDeleteModal() {
+      pendingDeleteId = null;
+      document._deleteFromDetail = false;
+      document.getElementById('delete-modal').classList.remove('show');
+    }
+    async function confirmDelete() {
+      if (!pendingDeleteId) return;
+      const id         = pendingDeleteId;
+      const fromDetail = document._deleteFromDetail;
+      pendingDeleteId  = null;
+      document._deleteFromDetail = false;
+      document.getElementById('delete-modal').classList.remove('show');
+      const { error } = await supabaseClient
+        .from('registrations')
+        .delete()
+        .eq('id', id);
+      if (error) { alert('Error deleting: ' + error.message); return; }
+      if (fromDetail) closeDetails();
+    }
+
+    function confirmClearAll() {
+      document.getElementById('clear-modal').classList.add('show');
+    }
+    async function clearAll() {
+      document.getElementById('clear-modal').classList.remove('show');
+      if (!allData.length) return;
+      const ids = allData.map(r => r.id);
+      const { error } = await supabaseClient
+        .from('registrations')
+        .delete()
+        .in('id', ids);
+      if (error) { alert('Error clearing data: ' + error.message); return; }
+      closeDetails();
+    }
+
+    /* ── EXPORT CSV ── */
+    function exportCSV() {
+      if (!allData.length) { alert('No data to export.'); return; }
+      const headers = ['#','Name','Email','Phone','Screenshot URL','Transaction ID','Submitted','Status'];
+      const rows = allData.map((r, i) => [
+        allData.length - i, r.name, r.email, r.phone,
+        r.screenshot || '—', r.transactionId || '—',
+        formatDate(r.createdAt), capitalize(r.status)
+      ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','));
+      const csv  = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = 'hantrix_registrations.csv';
+      a.click(); URL.revokeObjectURL(url);
+    }
+
+    /* ── KEYBOARD SHORTCUTS ── */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeImgModal();
+        closeDeleteModal();
+        document.getElementById('clear-modal').classList.remove('show');
+      }
+    });
+
+    /* ── AUTO-LOGIN CHECK ON LOAD ── */
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-app').style.display = 'block';
+        init();
+      }
+      document.getElementById('login-pw').addEventListener('keydown', e => {
+        if (e.key === 'Enter') doLogin();
+      });
+    });
+  </script>
+
+</body>
+</html>

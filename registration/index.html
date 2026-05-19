@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — International Dropshipping Webinar</title>
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '784624624731288');
+  fbq('track', 'PageView');
+  fbq('track', 'InitiateCheckout');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=784624624731288&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/css/intlTelInput.css">
+  <style>
+    :root {
+      --orange:     #F7941D;
+      --orange-dim: rgba(247,148,29,0.13);
+      --dark:       #1C1C1E;
+      --text:       #3a3a3a;
+      --muted:      #7a7a7a;
+      --bg:         #F0EFED;
+      --white:      #FFFFFF;
+      --red:        #ef4444;
+      --green:      #22c55e;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── NAVBAR ─────────────────────── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      height: 70px; padding: 0 72px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 17px; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--dark);
+    }
+    .logo-sub {
+      font-size: 9px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .nav-back {
+      display: flex; align-items: center; gap: 8px;
+      color: var(--muted); font-size: 13px; font-weight: 600;
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-back:hover { color: var(--dark); }
+
+    /* ── STEPS BAR ──────────────────── */
+    .steps-bar {
+      background: var(--dark);
+      padding: 0 72px;
+      display: flex; align-items: center; gap: 0; height: 56px;
+    }
+    .step {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4);
+      padding: 0 20px 0 0;
+    }
+    .step.active { color: var(--white); }
+    .step.done   { color: var(--orange); }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+      color: rgba(255,255,255,0.4);
+    }
+    .step.active .step-num {
+      background: var(--orange); border-color: var(--orange); color: var(--white);
+    }
+    .step.done .step-num {
+      background: var(--orange); border-color: var(--orange); color: var(--white);
+    }
+    .step-arrow {
+      width: 32px; height: 1px; background: rgba(255,255,255,0.12); margin-right: 20px;
+    }
+
+    /* ── MAIN LAYOUT ────────────────── */
+    .main {
+      max-width: 1200px; margin: 0 auto;
+      padding: 48px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* ── PAYMENT PANEL ──────────────── */
+    .pay-panel {
+      background: var(--dark);
+      border-radius: 16px;
+      overflow: hidden;
+      position: sticky; top: 24px;
+    }
+
+    .pay-header {
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .pay-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 30px;
+      text-transform: uppercase; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .pay-subtitle { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+    /* Amount badge */
+    .pay-amount-badge {
+      display: inline-flex; align-items: baseline; gap: 3px;
+      background: var(--orange); border-radius: 6px;
+      padding: 6px 16px; margin-top: 16px;
+    }
+    .pab-pre  { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .pab-num  {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 32px; color: var(--white); line-height: 1;
+    }
+    .pab-suf  { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+    /* Tabs */
+    .pay-tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .pay-tab {
+      flex: 1; padding: 14px 20px; text-align: center;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer; border: none; background: transparent;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .pay-tab.active {
+      color: var(--orange); border-bottom-color: var(--orange);
+    }
+
+    /* Tab panes */
+    .pay-pane { display: none; padding: 28px 32px 32px; }
+    .pay-pane.active { display: block; }
+
+    /* QR section */
+    .qr-wrap {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .qr-wrap img {
+      width: 180px; height: 180px;
+      object-fit: contain; display: block; margin: 0 auto 12px;
+    }
+    .qr-name {
+      font-size: 13px; font-weight: 700; color: var(--dark);
+    }
+    .qr-upi  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Copyable field */
+    .copy-field {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 10px;
+    }
+    .cf-left {}
+    .cf-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.35);
+      margin-bottom: 3px; display: block;
+    }
+    .cf-value {
+      font-size: 15px; font-weight: 600; color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.5px;
+    }
+    .copy-btn {
+      flex-shrink: 0;
+      background: rgba(247,148,29,0.15);
+      border: 1px solid rgba(247,148,29,0.25);
+      color: var(--orange);
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 14px; border-radius: 4px;
+      cursor: pointer; white-space: nowrap;
+      transition: background .2s;
+    }
+    .copy-btn:hover { background: rgba(247,148,29,0.28); }
+    .copy-btn.copied {
+      background: rgba(34,197,94,0.15);
+      border-color: rgba(34,197,94,0.3);
+      color: #22c55e;
+    }
+
+    /* UPI app grid */
+    .upi-note {
+      font-size: 11px; color: rgba(255,255,255,0.35);
+      text-align: center; margin-top: 16px; margin-bottom: 12px; line-height: 1.6;
+    }
+    .upi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .upi-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 18px 12px 14px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+      cursor: pointer; text-decoration: none;
+      transition: transform .18s ease, border-color .18s ease,
+                  background .18s ease, box-shadow .18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .upi-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(247,148,29,0.5);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 8px 24px rgba(247,148,29,0.15);
+    }
+    .upi-card:active {
+      transform: translateY(0);
+      background: rgba(247,148,29,0.12);
+      border-color: rgba(247,148,29,0.6);
+    }
+    .upi-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .upi-label {
+      font-size: 12px; font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.3px; text-align: center;
+    }
+
+    /* Bank note */
+    .bank-note {
+      font-size: 12px; color: rgba(255,255,255,0.35);
+      margin-top: 14px; line-height: 1.6;
+      padding: 12px 14px;
+      background: rgba(247,148,29,0.08);
+      border-radius: 6px; border-left: 3px solid var(--orange);
+    }
+
+    /* ── BANK TRANSFER REDESIGN ── */
+    .bank-section-header {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,0.65);
+      margin-bottom: 14px;
+    }
+    .bank-details-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1.5px solid var(--orange);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .bank-detail-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 15px 18px; gap: 12px;
+    }
+    .bank-detail-row + .bank-detail-row {
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .bank-detail-info { display: flex; flex-direction: column; gap: 3px; }
+    .bank-detail-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #999;
+    }
+    .bank-detail-value {
+      font-size: 15px; font-weight: 700; color: var(--dark);
+      font-family: 'Barlow', sans-serif;
+    }
+    .bank-detail-copy {
+      flex-shrink: 0;
+      display: flex; align-items: center; gap: 6px;
+      background: rgba(247,148,29,0.1);
+      border: 1px solid rgba(247,148,29,0.3);
+      color: var(--orange);
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px; font-weight: 700;
+      padding: 7px 13px; border-radius: 6px;
+      cursor: pointer; white-space: nowrap;
+      transition: background .2s;
+    }
+    .bank-detail-copy:hover { background: rgba(247,148,29,0.2); }
+    .bank-detail-copy.copied {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.3);
+      color: #22c55e;
+    }
+
+    /* ── FORM PANEL ─────────────────── */
+    .form-panel {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px 36px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .form-panel-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 32px;
+      text-transform: uppercase; color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-panel-sub {
+      font-size: 14px; color: var(--muted);
+      margin-bottom: 32px; line-height: 1.6;
+    }
+
+    .fg { margin-bottom: 18px; }
+    .fg label {
+      display: block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--text); margin-bottom: 7px;
+    }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; padding: 13px 15px;
+      font-family: 'Barlow', sans-serif; font-size: 15px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 8px; background: var(--bg); color: var(--dark);
+      outline: none; transition: border-color .2s;
+      appearance: none;
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: var(--orange);
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: #b0b0b0; }
+
+    /* File upload */
+    .upload-zone {
+      border: 2px dashed rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      background: var(--bg);
+      position: relative;
+    }
+    .upload-zone:hover {
+      border-color: var(--orange);
+      background: rgba(247,148,29,0.04);
+    }
+    .upload-zone.has-file {
+      border-color: #22c55e;
+      background: rgba(34,197,94,0.04);
+    }
+    .upload-zone.upload-error {
+      border-color: var(--red);
+      background: rgba(239,68,68,0.03);
+    }
+    .upload-zone input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer;
+      width: 100%; height: 100%;
+      padding: 0; border: none; background: transparent;
+    }
+    .upload-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--orange-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px; color: var(--orange);
+    }
+    .upload-title {
+      font-weight: 700; font-size: 14px; color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .upload-sub { font-size: 12px; color: var(--muted); }
+    .upload-filename {
+      font-size: 13px; font-weight: 600; color: #22c55e;
+      margin-top: 8px; display: none;
+    }
+    .upload-zone.has-file .upload-filename { display: block; }
+    .upload-zone.has-file .upload-default { display: none; }
+
+    .form-divider {
+      height: 1px; background: rgba(0,0,0,0.07);
+      margin: 24px 0;
+    }
+
+    .btn-submit {
+      width: 100%; background: var(--orange); color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700; font-size: 16px;
+      padding: 16px; border: none; border-radius: 8px;
+      cursor: pointer; letter-spacing: 0.3px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-submit:hover { background: #dc830e; transform: translateY(-1px); }
+
+    .form-note {
+      text-align: center; font-size: 12px; color: var(--muted);
+      margin-top: 14px;
+    }
+
+    /* ── SUCCESS STATE ──────────────── */
+    .success-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(28,28,30,0.88);
+      z-index: 200;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .success-overlay.show { display: flex; }
+    .success-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px 36px;
+      text-align: center;
+      max-width: 500px; width: 100%;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+    }
+    .success-icon {
+      width: 68px; height: 68px; border-radius: 50%;
+      background: rgba(247,148,29,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 18px;
+    }
+    .success-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 10px;
+    }
+    .success-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: 38px;
+      text-transform: uppercase; color: var(--dark);
+      line-height: 1.05; margin-bottom: 12px;
+    }
+    .success-msg {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.7; margin-bottom: 24px;
+      max-width: 360px; margin-left: auto; margin-right: auto;
+    }
+    .outcome-cards {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin-bottom: 24px;
+    }
+    .outcome-card {
+      border-radius: 10px; padding: 18px 16px;
+      text-align: left; display: flex; gap: 12px; align-items: flex-start;
+    }
+    .confirmed-card {
+      background: rgba(34,197,94,0.07);
+      border: 1.5px solid rgba(34,197,94,0.2);
+    }
+    .refund-card {
+      background: rgba(245,158,11,0.07);
+      border: 1.5px solid rgba(245,158,11,0.2);
+    }
+    .outcome-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .outcome-body h4 { font-weight: 700; font-size: 13px; margin-bottom: 5px; color: var(--dark); }
+    .outcome-body p  { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .outcome-body strong { color: var(--dark); }
+    .email-highlight { color: var(--orange); font-weight: 700; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: var(--white);
+      font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 14px;
+      padding: 13px 28px; border-radius: 6px;
+      text-decoration: none; margin-bottom: 14px;
+      transition: background .2s;
+    }
+    .btn-whatsapp:hover { background: #1db954; }
+    .btn-back-link {
+      display: block; font-size: 13px; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .btn-back-link:hover { color: var(--dark); }
+
+    /* ── RESPONSIVE ─────────────────── */
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .main { grid-template-columns: 1fr; padding: 20px 16px 60px; gap: 20px; }
+      .pay-panel { position: static; }
+      .form-panel { padding: 24px 18px; }
+
+      /* Steps bar — hidden on mobile */
+      .steps-bar { display: none; }
+
+      /* UPI grid — 2 cols already, fine; tighten padding */
+      .upi-card { padding: 14px 8px 12px; }
+      .upi-icon { width: 40px; height: 40px; }
+      .upi-label { font-size: 11px; }
+
+      /* QR wrap */
+      .qr-wrap img { width: 150px; height: 150px; }
+
+      /* Pay tabs */
+      .pay-tab { font-size: 12px; padding: 12px 14px; }
+
+      /* Pay pane padding */
+      .pay-pane { padding: 20px 18px 24px; }
+      .pay-header { padding: 20px 18px 18px; }
+
+      /* Bank detail rows — wrap copy button below on very small screens */
+      .bank-detail-row { padding: 13px 14px; }
+      .bank-detail-value { font-size: 13px; word-break: break-all; }
+
+      /* Form panel */
+      .form-panel-title { font-size: 26px; }
+      .form-panel-sub { font-size: 13px; margin-bottom: 24px; }
+      .fg input, .fg select, .fg textarea { font-size: 16px; } /* prevents iOS zoom */
+
+      /* Success overlay */
+      .success-card { padding: 32px 20px 28px; }
+      .success-title { font-size: 28px; }
+      .outcome-cards { grid-template-columns: 1fr; }
+      .btn-whatsapp { width: 100%; justify-content: center; }
+    }
+
+
+    /* orange-dim needs to be a real value for the upload-icon */
+    .upload-icon { background: rgba(247,148,29,0.13); }
+
+    /* ── VALIDATION STATES ──────────────── */
+    .fg input.field-invalid       { border-color: var(--red);   background: rgba(239,68,68,0.03); }
+    .fg input.field-invalid:focus { border-color: var(--red); }
+    .fg input.field-valid         { border-color: var(--green); background: rgba(34,197,94,0.03); }
+    .fg input.field-valid:focus   { border-color: var(--green); }
+
+    .field-msg {
+      font-size: 12px; margin-top: 6px;
+      display: none; align-items: center; gap: 5px; line-height: 1.4;
+    }
+    .field-msg.show { display: flex; }
+    .field-msg.err  { color: var(--red); }
+    .field-msg.ok   { color: #16a34a; }
+    .field-msg svg  { flex-shrink: 0; }
+
+    /* ── INTL-TEL-INPUT THEME ─────────── */
+    .iti { width: 100%; }
+    .iti__selected-dial-code {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 600; color: var(--dark);
+    }
+    .iti__search-input {
+      font-family: 'Barlow', sans-serif; font-size: 14px; padding: 8px 12px;
+    }
+    .iti__country-name { font-family: 'Barlow', sans-serif; font-size: 14px; }
+    /* keep the phone input visually consistent with other fields */
+    #f-phone { border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ───────────────────────── -->
+  <nav>
+    <a href="../index.html" class="logo">
+      <img src="../uploads/Real-logo.png" alt="Hantrix Academy" style="height:42px; width:auto;">
+    </a>
+    <a href="../index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Webinar
+    </a>
+  </nav>
+
+  <!-- ── STEPS BAR ────────────────────── -->
+  <div class="steps-bar">
+    <div class="step active">
+      <div class="step-num">1</div>
+      <span class="step-label">Make Payment</span>
+    </div>
+    <div class="step-arrow"></div>
+    <div class="step active">
+      <div class="step-num">2</div>
+      <span class="step-label">Fill Your Details</span>
+    </div>
+    <div class="step-arrow"></div>
+    <div class="step active">
+      <div class="step-num">3</div>
+      <span class="step-label">Upload Screenshot</span>
+    </div>
+    <div class="step-arrow"></div>
+    <div class="step active">
+      <div class="step-num">4</div>
+      <span class="step-label">Confirmation</span>
+    </div>
+  </div>
+
+  <!-- ── MAIN ─────────────────────────── -->
+  <div class="main">
+
+    <!-- LEFT: PAYMENT PANEL -->
+    <div class="pay-panel">
+      <div class="pay-header">
+        <div class="pay-title">Complete Payment</div>
+        <div class="pay-subtitle">Pay first, then fill the form with your details &amp; screenshot</div>
+        <div class="pay-amount-badge">
+          <span class="pab-pre">Fee:&nbsp;</span>
+          <span class="pab-num">99</span>
+          <span class="pab-suf">&nbsp;only</span>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="pay-tabs">
+        <button class="pay-tab active" onclick="switchTab('upi', this)">📱 Scan QR / UPI</button>
+        <button class="pay-tab" onclick="switchTab('bank', this)">🏦 Bank Transfer</button>
+      </div>
+
+      <!-- UPI PANE -->
+      <div class="pay-pane active" id="pane-upi">
+        <div class="qr-wrap">
+          <img src="../uploads/qr-upi.png" alt="Federal Bank UPI QR Code">
+          <div class="qr-name">HANTRIX ACADEMY LLP</div>
+          <div class="qr-upi">Federal Bank · UPI</div>
+        </div>
+
+        <!-- UPI ID copyable -->
+        <div class="copy-field">
+          <div class="cf-left">
+            <span class="cf-label">UPI ID</span>
+            <span class="cf-value">hantrix123qr@fbl</span>
+          </div>
+          <button class="copy-btn" onclick="copyText('hantrix123qr@fbl', this)">Copy</button>
+        </div>
+
+        <div class="upi-note">Tap to open your preferred UPI app &amp; pay directly</div>
+        <div class="upi-grid">
+
+          <!-- Google Pay -->
+          <a class="upi-card" href="#" onclick="openUPIApp('gpay');return false;">
+            <div class="upi-icon">
+              <img src="../uploads/gpay.png" alt="Google Pay" style="width:48px;height:48px;object-fit:contain;border-radius:10px;">
+            </div>
+            <span class="upi-label">Google Pay</span>
+          </a>
+
+          <!-- PhonePe -->
+          <a class="upi-card" href="#" onclick="openUPIApp('phonepe');return false;">
+            <div class="upi-icon">
+              <img src="../uploads/phonepay.png" alt="PhonePe" style="width:48px;height:48px;object-fit:contain;border-radius:10px;">
+            </div>
+            <span class="upi-label">PhonePe</span>
+          </a>
+
+          <!-- Paytm -->
+          <a class="upi-card" href="#" onclick="openUPIApp('paytm');return false;">
+            <div class="upi-icon">
+              <img src="../uploads/paytm.png" alt="Paytm" style="width:48px;height:48px;object-fit:contain;border-radius:10px;">
+            </div>
+            <span class="upi-label">Paytm</span>
+          </a>
+
+          <!-- BHIM -->
+          <a class="upi-card" href="#" onclick="openUPIApp('bhim');return false;">
+            <div class="upi-icon">
+              <img src="../uploads/bhim-app-icon.jpg" alt="BHIM" style="width:48px;height:48px;object-fit:contain;border-radius:10px;">
+            </div>
+            <span class="upi-label">BHIM</span>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- BANK TRANSFER PANE -->
+      <div class="pay-pane" id="pane-bank">
+
+        <div class="bank-section-header">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Bank Transfer Details
+        </div>
+
+        <div class="bank-details-card">
+          <div class="bank-detail-row">
+            <div class="bank-detail-info">
+              <span class="bank-detail-label">Account Holder</span>
+              <span class="bank-detail-value">Hantrix Academy LLP</span>
+            </div>
+            <button class="bank-detail-copy" onclick="copyText('Hantrix Academy LLP', this)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="bank-detail-row">
+            <div class="bank-detail-info">
+              <span class="bank-detail-label">Account Number</span>
+              <span class="bank-detail-value">10010200167671</span>
+            </div>
+            <button class="bank-detail-copy" onclick="copyText('10010200167671', this)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="bank-detail-row">
+            <div class="bank-detail-info">
+              <span class="bank-detail-label">Bank Name</span>
+              <span class="bank-detail-value">Federal Bank</span>
+            </div>
+            <button class="bank-detail-copy" onclick="copyText('Federal Bank', this)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="bank-detail-row">
+            <div class="bank-detail-info">
+              <span class="bank-detail-label">Branch</span>
+              <span class="bank-detail-value">Aluva – Bank Junction</span>
+            </div>
+            <button class="bank-detail-copy" onclick="copyText('Aluva - Bank Junction', this)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+          <div class="bank-detail-row">
+            <div class="bank-detail-info">
+              <span class="bank-detail-label">IFSC Code</span>
+              <span class="bank-detail-value">FDRL0001001</span>
+            </div>
+            <button class="bank-detail-copy" onclick="copyText('FDRL0001001', this)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy
+            </button>
+          </div>
+        </div>
+
+        <div class="bank-note">
+          After transferring, take a screenshot of the confirmation and upload it in the form →
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: REGISTRATION FORM -->
+    <div class="form-panel">
+      <h2 class="form-panel-title">Your Details</h2>
+      <p class="form-panel-sub">Fill in your information after completing the payment. We'll confirm your seat once we verify the screenshot.</p>
+
+      <form id="reg-form" onsubmit="handleSubmit(event)" novalidate>
+        <div class="fg">
+          <label>Full Name *</label>
+          <input type="text" id="f-name" placeholder="e.g. Ahmed Khan" required
+            oninput="validateNameField()" onblur="validateNameField(true)">
+          <div class="field-msg err" id="name-err">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="name-err-text">Full name is required.</span>
+          </div>
+          <div class="field-msg ok" id="name-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Looks good!
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>Email Address *</label>
+          <input type="email" id="f-email" placeholder="you@example.com" required
+            oninput="validateEmailField()" onblur="validateEmailField(true)">
+          <div class="field-msg err" id="email-err">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="email-err-text">Enter a valid email address.</span>
+          </div>
+          <div class="field-msg ok" id="email-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Looks good!
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>WhatsApp / Phone Number *</label>
+          <input type="tel" id="f-phone" placeholder="Enter phone number" required>
+          <div class="field-msg err" id="phone-err">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="phone-err-text">Enter a valid phone number.</span>
+          </div>
+          <div class="field-msg ok" id="phone-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Valid number!
+          </div>
+        </div>
+
+        <div class="form-divider"></div>
+
+        <div class="fg">
+          <label>Payment Screenshot *</label>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="f-screenshot" accept="image/*,.pdf"
+              onchange="handleFileSelect(this)">
+            <div class="upload-default">
+              <div class="upload-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/>
+                  <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/>
+                </svg>
+              </div>
+              <div class="upload-title">Upload Payment Screenshot</div>
+              <div class="upload-sub">Tap to choose · JPG, PNG or PDF · Max 10 MB</div>
+            </div>
+            <div class="upload-filename" id="upload-filename"></div>
+          </div>
+          <div class="field-msg err" id="screenshot-err" style="margin-top:8px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Payment screenshot is required.
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>Transaction ID / Reference (optional)</label>
+          <input type="text" id="f-txn" placeholder="e.g. 426837291054">
+        </div>
+
+        <button type="submit" class="btn-submit">Submit Registration →</button>
+        <p class="form-note">🔒 Your information is safe with us · Seat confirmed after verification</p>
+        <p class="form-note" style="margin-top:10px;">
+          Have questions?
+          <a href="https://wa.me/919074174802?text=Hi%2C+I+have+a+question+about+the+Hantrix+Academy+webinar+registration."
+            target="_blank"
+            style="color:#25D366;font-weight:700;text-decoration:none;">
+            💬 Chat with us on WhatsApp
+          </a>
+        </p>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- ── SUCCESS OVERLAY ───────────────── -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-card">
+      <!-- Icon -->
+      <div class="success-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#F7941D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+
+      <div class="success-tag">Submitted Successfully</div>
+      <h2 class="success-title">Registration Under<br>Confirmation</h2>
+      <p class="success-msg">
+        Thank you! We've received your registration and payment screenshot.
+        Our team will verify your payment shortly.
+      </p>
+
+      <!-- Two outcome cards -->
+      <div class="outcome-cards">
+        <div class="outcome-card confirmed-card">
+          <div class="outcome-icon">✅</div>
+          <div class="outcome-body">
+            <h4>If Confirmed</h4>
+            <p>The webinar <strong>meet link</strong> will be sent to<br>
+            <span id="confirm-email" class="email-highlight">your email</span></p>
+          </div>
+        </div>
+        <div class="outcome-card refund-card">
+          <div class="outcome-icon">⚠️</div>
+          <div class="outcome-body">
+            <h4>If Not Confirmed</h4>
+            <p>Contact us on <strong>WhatsApp</strong> or your payment will be <strong>refunded within 24 hours</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhatsApp CTA -->
+      <a href="https://wa.me/919074174802" class="btn-whatsapp" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.858L.057 23.428a.5.5 0 00.609.61l5.733-1.502A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.878 9.878 0 01-5.032-1.374l-.36-.214-3.733.979.994-3.63-.234-.374A9.861 9.861 0 012.1 12C2.1 6.534 6.534 2.1 12 2.1 17.466 2.1 21.9 6.534 21.9 12c0 5.466-4.434 9.9-9.9 9.9z"/>
+        </svg>
+        Contact Us on WhatsApp
+      </a>
+
+      <a href="../index.html" class="btn-back-link">← Back to Webinar Page</a>
+    </div>
+  </div>
+
+  <!-- intl-tel-input JS -->
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/intlTelInput.min.js"></script>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+
+  <script>
+
+    /* ── VALIDATION STATE ── */
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let iti = null; // intl-tel-input instance
+
+    function validateEmailField(touch = false) {
+      const input  = document.getElementById('f-email');
+      const errEl  = document.getElementById('email-err');
+      const okEl   = document.getElementById('email-ok');
+      const errTxt = document.getElementById('email-err-text');
+      const val    = input.value.trim();
+
+      const clear = () => {
+        input.classList.remove('field-invalid', 'field-valid');
+        errEl.classList.remove('show'); okEl.classList.remove('show');
+      };
+      const bad = msg => {
+        input.classList.add('field-invalid'); input.classList.remove('field-valid');
+        errTxt.textContent = msg;
+        errEl.classList.add('show'); okEl.classList.remove('show');
+        return false;
+      };
+      const good = () => {
+        input.classList.add('field-valid'); input.classList.remove('field-invalid');
+        errEl.classList.remove('show'); okEl.classList.add('show');
+        return true;
+      };
+
+      if (!val)                              return touch ? bad('Email address is required.') : (clear(), false);
+      if (!val.includes('@'))                return bad('Email must contain "@".');
+      if (val.startsWith('@'))               return bad('Missing username before "@".');
+      const domain = val.split('@')[1] || '';
+      if (!domain)                           return bad('Missing domain after "@".');
+      if (!domain.includes('.'))             return bad('Domain needs a "." — e.g. gmail.com.');
+      if (!EMAIL_RE.test(val))               return bad('Enter a valid email — e.g. you@example.com.');
+      return good();
+    }
+
+    function validatePhoneField(touch = false) {
+      const input  = document.getElementById('f-phone');
+      const errEl  = document.getElementById('phone-err');
+      const okEl   = document.getElementById('phone-ok');
+      const errTxt = document.getElementById('phone-err-text');
+      const val    = input.value.trim();
+
+      const clear = () => {
+        input.classList.remove('field-invalid', 'field-valid');
+        errEl.classList.remove('show'); okEl.classList.remove('show');
+      };
+      const bad = msg => {
+        input.classList.add('field-invalid'); input.classList.remove('field-valid');
+        errTxt.textContent = msg;
+        errEl.classList.add('show'); okEl.classList.remove('show');
+        return false;
+      };
+      const good = () => {
+        input.classList.add('field-valid'); input.classList.remove('field-invalid');
+        errEl.classList.remove('show'); okEl.classList.add('show');
+        return true;
+      };
+
+      if (!iti) return true;
+      if (!val)  return touch ? bad('Phone number is required.') : (clear(), false);
+
+      /* Hard digit-count check — runs before iti.isValidNumber() so partial
+         numbers are always rejected even while utils.js is still loading.     */
+      const iso2     = (iti.getSelectedCountryData().iso2 || '').toLowerCase();
+      const required = COUNTRY_MAX_DIGITS[iso2];
+      if (required) {
+        const digits = val.replace(/\D/g, '').length;
+        if (digits < required) return bad(`Enter exactly ${required} digits for the selected country (${digits}/${required}).`);
+        if (digits > required) return bad(`Number is too long — maximum ${required} digits allowed.`);
+      }
+
+      if (!iti.isValidNumber()) {
+        const code = iti.getValidationError();
+        const msgs = {
+          1: 'Invalid country code.',
+          2: 'Number is too short for the selected country.',
+          3: 'Number is too long for the selected country.',
+          4: 'Not a valid number for the selected country.'
+        };
+        return bad(msgs[code] || 'Enter a valid phone number for the selected country.');
+      }
+      return good();
+    }
+
+    /* ── TAB SWITCH ── */
+    function switchTab(id, btn) {
+      document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.pay-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('pane-' + id).classList.add('active');
+    }
+
+    /* ── UPI APP DEEP LINKS ── */
+    function openUPIApp(app) {
+      const pa  = 'hantrix123qr@fbl';
+      const pn  = encodeURIComponent('Hantrix Academy');
+      const am  = '99';
+      const tn  = encodeURIComponent('Webinar Fee');
+      const base = `pa=${pa}&pn=${pn}&am=${am}&tn=${tn}&cu=INR`;
+
+      const schemes = {
+        gpay:    `gpay://upi/pay?${base}`,
+        phonepe: `phonepe://pay?${base}`,
+        paytm:   `paytmmp://pay?${base}`,
+        bhim:    `bhim://pay?${base}`,
+      };
+      const fallback = `upi://pay?${base}`;
+      window.location.href = schemes[app] || fallback;
+    }
+
+    /* ── COPY TO CLIPBOARD ── */
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      }).catch(() => {
+        const el = document.createElement('textarea');
+        el.value = text; document.body.appendChild(el);
+        el.select(); document.execCommand('copy');
+        document.body.removeChild(el);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+
+    /* ── NAME VALIDATION ── */
+    function validateNameField(touch = false) {
+      const input  = document.getElementById('f-name');
+      const errEl  = document.getElementById('name-err');
+      const okEl   = document.getElementById('name-ok');
+      const errTxt = document.getElementById('name-err-text');
+      const val    = input.value.trim();
+
+      const clear = () => {
+        input.classList.remove('field-invalid', 'field-valid');
+        errEl.classList.remove('show'); okEl.classList.remove('show');
+      };
+      const bad = msg => {
+        input.classList.add('field-invalid'); input.classList.remove('field-valid');
+        errTxt.textContent = msg;
+        errEl.classList.add('show'); okEl.classList.remove('show');
+        return false;
+      };
+      const good = () => {
+        input.classList.add('field-valid'); input.classList.remove('field-invalid');
+        errEl.classList.remove('show'); okEl.classList.add('show');
+        return true;
+      };
+
+      if (!val)           return touch ? bad('Full name is required.') : (clear(), false);
+      if (val.length < 2) return bad('Name must be at least 2 characters.');
+      return good();
+    }
+
+    /* ── SCREENSHOT VALIDATION ── */
+    function validateScreenshotField() {
+      const file   = document.getElementById('f-screenshot').files[0];
+      const zone   = document.getElementById('upload-zone');
+      const errEl  = document.getElementById('screenshot-err');
+      if (!file) {
+        zone.classList.add('upload-error');
+        errEl.classList.add('show');
+        return false;
+      }
+      zone.classList.remove('upload-error');
+      errEl.classList.remove('show');
+      return true;
+    }
+
+    /* ── FILE SELECT ── */
+    function handleFileSelect(input) {
+      const zone  = document.getElementById('upload-zone');
+      const fname = document.getElementById('upload-filename');
+      if (input.files && input.files[0]) {
+        zone.classList.add('has-file');
+        zone.classList.remove('upload-error');
+        document.getElementById('screenshot-err').classList.remove('show');
+        fname.textContent = '✓ ' + input.files[0].name;
+      }
+    }
+
+    /* ── SHOW SUCCESS ── */
+    function showSuccess(email) {
+      const emailSpan = document.getElementById('confirm-email');
+      if (emailSpan) emailSpan.textContent = email;
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+      document.getElementById('success-overlay').classList.add('show');
+    }
+
+    /* ── FORM SUBMIT ── */
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      const txn = document.getElementById('f-txn').value.trim();
+
+      /* Validate all fields */
+      const nameOk       = validateNameField(true);
+      const emailOk      = validateEmailField(true);
+      const phoneOk      = validatePhoneField(true);
+      const screenshotOk = validateScreenshotField();
+
+      if (!nameOk || !emailOk || !phoneOk || !screenshotOk) {
+        const firstInput = document.querySelector('#f-name.field-invalid, #f-email.field-invalid, #f-phone.field-invalid');
+        if (firstInput) {
+          firstInput.focus();
+        } else if (!screenshotOk) {
+          document.getElementById('upload-zone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      const name  = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const phone = iti ? iti.getNumber() : document.getElementById('f-phone').value.trim();
+      const file  = document.getElementById('f-screenshot').files[0];
+
+      btn.textContent = 'Uploading screenshot…';
+      btn.disabled = true;
+
+      try {
+        /* ── STEP 1: Upload screenshot to Supabase Storage ── */
+        const ext      = file.name.split('.').pop();
+        const filename = `${Date.now()}_${name.replace(/\s+/g, '_')}.${ext}`;
+
+        const { data: uploadData, error: uploadError } = await supabaseClient.storage
+          .from('webinar-payment-screenshots')
+          .upload(filename, file, { cacheControl: '3600', upsert: false });
+
+        if (uploadError) throw new Error('Screenshot upload failed: ' + uploadError.message);
+
+        /* ── STEP 2: Get public URL ── */
+        const { data: urlData } = supabaseClient.storage
+          .from('webinar-payment-screenshots')
+          .getPublicUrl(uploadData.path);
+
+        /* ── STEP 3: Save registration to Supabase database ── */
+        btn.textContent = 'Saving registration…';
+
+        const { error: insertError } = await supabaseClient
+          .from('registrations')
+          .insert({
+            name,
+            email,
+            phone,
+            transaction_id:  txn || null,
+            screenshot_url:  urlData.publicUrl,
+            status:          'pending'
+          });
+
+        if (insertError) throw new Error('Could not save registration: ' + insertError.message);
+
+        showSuccess(email);
+
+      } catch (err) {
+        console.error('Submission error:', err);
+        alert('Submission failed. Please try again.\n\nError: ' + err.message);
+        btn.textContent = 'Submit Registration →';
+        btn.disabled = false;
+      }
+    }
+
+    /* ── PHONE INPUT RESTRICTION ── */
+    const COUNTRY_MAX_DIGITS = { in: 10 }; // extend as needed
+
+    function setPhoneMaxLength() {
+      if (!iti) return;
+      const phoneEl = document.getElementById('f-phone');
+      const iso2    = (iti.getSelectedCountryData().iso2 || '').toLowerCase();
+      const max     = COUNTRY_MAX_DIGITS[iso2];
+      if (max) {
+        phoneEl.setAttribute('maxlength', String(max));
+        if (phoneEl.value.length > max) phoneEl.value = phoneEl.value.slice(0, max);
+      } else {
+        phoneEl.removeAttribute('maxlength');
+      }
+    }
+
+    function restrictPhoneToDigits() {
+      const input  = document.getElementById('f-phone');
+      let cleaned  = input.value.replace(/\D/g, '');
+      const maxLen = parseInt(input.getAttribute('maxlength') || '999', 10);
+      if (cleaned.length > maxLen) cleaned = cleaned.slice(0, maxLen);
+      if (input.value !== cleaned) input.value = cleaned;
+    }
+
+    /* ── INIT ON PAGE LOAD ── */
+    window.addEventListener('DOMContentLoaded', () => {
+      /* Initialise intl-tel-input on the phone field */
+      const phoneEl = document.getElementById('f-phone');
+      iti = window.intlTelInput(phoneEl, {
+        initialCountry:    'in',
+        separateDialCode:  true,
+        nationalMode:      false,
+        utilsScript:       'https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.7/build/js/utils.js',
+        preferredCountries: ['in', 'us', 'gb', 'ae', 'sg', 'pk', 'bd', 'au', 'ca'],
+      });
+      setPhoneMaxLength(); // apply maxlength for the initial country
+
+      /* Real-time email validation */
+      const emailEl = document.getElementById('f-email');
+      emailEl.addEventListener('input', () => validateEmailField());
+      emailEl.addEventListener('blur',  () => validateEmailField(true));
+
+      /* Block non-digit keys on the phone field */
+      const ALLOWED_KEYS = new Set([
+        'Backspace','Delete','Tab','Escape','Enter',
+        'ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'
+      ]);
+      phoneEl.addEventListener('keydown', e => {
+        if (ALLOWED_KEYS.has(e.key)) return;
+        if ((e.ctrlKey || e.metaKey) && ['a','c','v','x'].includes(e.key.toLowerCase())) return;
+        if (!/^\d$/.test(e.key)) e.preventDefault();
+      });
+
+      /* Strip any non-digits that slip through (e.g. paste), then validate */
+      phoneEl.addEventListener('input', () => {
+        restrictPhoneToDigits();
+        validatePhoneField();
+      });
+      phoneEl.addEventListener('blur',          () => validatePhoneField(true));
+      phoneEl.addEventListener('countrychange', () => {
+        setPhoneMaxLength();
+        if (phoneEl.value.trim()) validatePhoneField(true);
+      });
+    });
+  </script>
+
+</body>
+</html>

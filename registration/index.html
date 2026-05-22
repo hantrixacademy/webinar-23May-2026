@@ -1097,7 +1097,10 @@
     function showSuccess(email) {
       const emailSpan = document.getElementById('confirm-email');
       if (emailSpan) emailSpan.textContent = email;
-      if (typeof fbq === 'function') fbq('track', 'Lead');
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+        fbq('track', 'Purchase', { value: 99, currency: 'INR' });
+      }
       document.getElementById('success-overlay').classList.add('show');
     }
 
